@@ -3,7 +3,8 @@
     package="com.healthsaathi.bloodbank">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +16,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Loginwithgmailandfb">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,7 +31,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Home" />
         <activity android:name=".Search" />
-        <activity android:name=".searchview"></activity>
+        <activity android:name=".searchview" />
+
     </application>
 
 </manifest>

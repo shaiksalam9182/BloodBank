@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1002477214307-i0uo3tpiivu2n1fjs741cmv1igndmnmt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.healthsaathi.bloodbank",
+            "certificate_hash": "55d8c6137b413dd787b032596e91853309f3ab5f"
+          }
+        },
+        {
           "client_id": "1002477214307-kfpgvp3jqv5us0h9cbvjt51e13sjkssv.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002477214307-kfpgvp3jqv5us0h9cbvjt51e13sjkssv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
