@@ -42,6 +42,7 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
     FirebaseDatabase mdatabase;
     private CallbackManager mcallmangaer;
     DatabaseReference mdatabasereference;
+    Boolean status = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,10 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user!=null){
                     Toast.makeText(Loginwithgmailandfb.this,user.getEmail(),Toast.LENGTH_LONG).show();
+                    if (user.getEmail()!=null){
+                        startActivity(new Intent(Loginwithgmailandfb.this,MainActivity.class));
+                        finish();
+                    }
                     //gmaillogin.setText(user.getEmail());
                 }else {
                     Toast.makeText(Loginwithgmailandfb.this,"Signed Out",Toast.LENGTH_LONG).show();
@@ -114,7 +119,10 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(Loginwithgmailandfb.this,"Status"+task.isSuccessful(),Toast.LENGTH_LONG).show();
+                            //Toast.makeText(Loginwithgmailandfb.this,"Status"+task.isSuccessful(),Toast.LENGTH_LONG).show();
+                            //startActivity(new Intent(Loginwithgmailandfb.this,MainActivity.class));
+                            //status = true;
+                            //finish();
                         }else {
                             Toast.makeText(Loginwithgmailandfb.this,"Status"+task.getException(),Toast.LENGTH_LONG).show();
                         }
@@ -155,7 +163,6 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(Loginwithgmailandfb.this,"Status:"+task.isSuccessful(),Toast.LENGTH_LONG).show();
 
                         }else {
                             Toast.makeText(Loginwithgmailandfb.this,"Status:"+task.getException(),Toast.LENGTH_LONG).show();
