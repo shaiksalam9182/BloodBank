@@ -19,4 +19,8 @@
 
 
     </string-array>
+
+    <string name="facebook_app_id">678577648992452</string>
+    <string name="fb_login_protocol_scheme">fb678577648992452</string>
+
 </resources>
