@@ -1,5 +1,6 @@
 package com.healthsaathi.bloodbank;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +43,7 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
     FirebaseDatabase mdatabase;
     private CallbackManager mcallmangaer;
     DatabaseReference mdatabasereference;
-    Boolean status = false;
+    ProgressDialog pdloading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,10 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_loginwithgmailandfb);
 
+        pdloading  = new ProgressDialog(Loginwithgmailandfb.this);
+
+
+        pdloading.setCancelable(false);
 
         mdatabase = FirebaseDatabase.getInstance();
         mdatabasereference = mdatabase.getReference();
@@ -99,11 +104,13 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
                 if (user!=null){
                     Toast.makeText(Loginwithgmailandfb.this,user.getEmail(),Toast.LENGTH_LONG).show();
                     if (user.getEmail()!=null){
+
                         startActivity(new Intent(Loginwithgmailandfb.this,MainActivity.class));
                         finish();
                     }
                     //gmaillogin.setText(user.getEmail());
                 }else {
+
                     Toast.makeText(Loginwithgmailandfb.this,"Signed Out",Toast.LENGTH_LONG).show();
                 }
             }
@@ -123,8 +130,11 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
                             //startActivity(new Intent(Loginwithgmailandfb.this,MainActivity.class));
                             //status = true;
                             //finish();
+
                         }else {
+
                             Toast.makeText(Loginwithgmailandfb.this,"Status"+task.getException(),Toast.LENGTH_LONG).show();
+
                         }
                     }
                 });
@@ -134,8 +144,11 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
 
 
     public void signinwithgmail() {
+        pdloading.setMessage("Getting the Google Accounts From the Device\nPlease Wait");
+        pdloading.show();
         Intent intent = Auth.GoogleSignInApi.getSignInIntent(mapiclient);
         startActivityForResult(intent,9001);
+        pdloading.setMessage("Authenticating With Google Server\nPlease Wait..");
     }
 
     @Override
@@ -163,8 +176,9 @@ public class Loginwithgmailandfb extends AppCompatActivity implements GoogleApiC
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-
+                            pdloading.dismiss();
                         }else {
+                            pdloading.dismiss();
                             Toast.makeText(Loginwithgmailandfb.this,"Status:"+task.getException(),Toast.LENGTH_LONG).show();
                         }
                     }
